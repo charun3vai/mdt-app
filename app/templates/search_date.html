@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search MDT Date</h2>
+<form>
+  <label>Start Date <input type="date" name="start" required></label>
+  <label>End Date <input type="date" name="end" required></label>
+  <button class="btn" type="submit">Search</button>
+</form>
+{% if items %}
+<table>
+  <tr><th>Patient</th><th>Hospital Number</th><th>Scheduled Date</th><th>Status</th></tr>
+  {% for c in items %}
+    <tr>
+      <td>{{ c.patient.name }}</td>
+      <td>{{ c.patient.hospital_number }}</td>
+      <td>{{ c.scheduled_date }}</td>
+      <td>
+        {% if c.status == 'Pending' %}
+          <a class="badge pending" href="/cases/{{ c.id }}/consensus">Pending</a>
+        {% else %}
+          <a class="badge done" href="/cases/{{ c.id }}/details" target="_blank">Done</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

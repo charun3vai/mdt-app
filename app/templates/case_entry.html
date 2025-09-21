@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>MDT Case Entry & Scheduling</h2>
+<div class="card">
+  <div><strong>{{ patient.name }}</strong> — HN {{ patient.hospital_number }}</div>
+  <div>DOB {{ patient.dob }} — Age: {{ age }}</div>
+</div>
+<form method="post" action="/cases/new">
+  <input type="hidden" name="hospital_number" value="{{ patient.hospital_number }}">
+  <label>Clinical History <textarea name="clinical_history"></textarea></label>
+  <label>Provisional Diagnosis <input name="provisional_diagnosis"></label>
+  <label>MDT Discussion For <input name="discussion_for"></label>
+  <label>MDT Scheduled For (Reason) <input name="scheduled_reason"></label>
+  <label>MDT Scheduled For (Date) <input name="scheduled_date" type="date"></label>
+  <button class="btn" type="submit">Save</button>
+</form>
+{% endblock %}

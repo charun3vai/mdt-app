@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit MDT Case #{{ case.id }}</h2>
+{% if prompt_no_date %}
+<div class="notice">Do you want to save without picking the date for MDT?</div>
+{% endif %}
+<div class="card">
+  <div><strong>{{ case.patient.name }}</strong> — HN {{ case.patient.hospital_number }}</div>
+  <div>DOB {{ case.patient.dob }} — Age: {{ age }}</div>
+</div>
+<p>Status: <span class="badge {{ 'done' if case.status=='Done' else 'pending' }}">{{ case.status }}</span></p>
+
+<p><a class="btn" href="/cases/{{ case.id }}/consensus">Open Consensus</a>
+<a class="btn" href="/cases/{{ case.id }}/preview.pdf" target="_blank">Preview as PDF (A4)</a>
+<a class="btn" href="/cases/{{ case.id }}/details" target="_blank">Open Details</a></p>
+{% endblock %}

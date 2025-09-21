@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+  <a class="btn" href="/patients/register">Patient Registration</a>
+  <a class="btn disabled">MDT Case Entry and Scheduling (unlocked after registration)</a>
+  <a class="btn disabled">MDT Meeting Consensus (open via search)</a>
+  <a class="btn" href="/search/date">Search MDT Date</a>
+  <a class="btn" href="/search/hn">Search MDT Hospital Number</a>
+</div>
+{% endblock %}

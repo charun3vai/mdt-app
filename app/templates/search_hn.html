@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search by Hospital Number</h2>
+<form>
+  <label>Hospital Number <input name="hn" value="{{ hn }}"></label>
+  <button class="btn" type="submit">Search</button>
+</form>
+{% if hn and results|length == 0 %}
+  <div class="notice">No cases found for HN {{ hn }}. <a href="/cases/new?hn={{ hn }}">Create MDT Case</a></div>
+{% endif %}
+{% if results %}
+<table>
+  <tr><th>Scheduled Date</th><th>Status</th><th>Preview</th></tr>
+  {% for c in results %}
+    <tr>
+      <td>{{ c.scheduled_date or "-" }}</td>
+      <td><a href="/cases/{{ c.id }}/details" target="_blank">{{ c.status }}</a></td>
+      <td><a class="btn" href="/cases/{{ c.id }}/preview.pdf" target="_blank">PDF</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

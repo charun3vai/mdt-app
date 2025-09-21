@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ request.app.title }}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+</head>
+<body>
+<header class="container">
+  <h1>MDT App</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/patients/register">Patient Registration</a>
+    <a href="/search/date">Search MDT Date</a>
+    <a href="/search/hn">Search MDT Hospital Number</a>
+  </nav>
+  <hr>
+</header>
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+<footer class="container muted">
+  <hr>
+  <small>&copy; {{ request.app.title }}</small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>MDT Consensus</h2>
+<div class="card">
+  <div><strong>{{ case.patient.name }}</strong> — HN {{ case.patient.hospital_number }}</div>
+  <div>DOB {{ case.patient.dob }} — Age: {{ age }}</div>
+</div>
+<form method="post">
+  <label>MDT Consensus <textarea name="consensus_text" required></textarea></label>
+  <label>Follow-up Actions (JSON list) <input name="followups" placeholder='["review in 3 months"]'></label>
+  <button class="btn" type="submit">Save</button>
+</form>
+{% endblock %}

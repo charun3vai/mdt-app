@@ -1,0 +1,58 @@
+Metadata-Version: 2.4
+Name: mdt-app
+Version: 0.1.0
+Summary: Browser-based MDT workflow app (FastAPI + SQLModel)
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn[standard]>=0.30.0
+Requires-Dist: jinja2>=3.1.2
+Requires-Dist: sqlmodel>=0.0.22
+Requires-Dist: aiosqlite>=0.20.0
+Requires-Dist: python-multipart>=0.0.9
+Requires-Dist: itsdangerous>=2.2.0
+Requires-Dist: passlib[bcrypt]>=1.7.4
+Requires-Dist: email-validator>=2.1.0.post1
+Requires-Dist: pydantic-settings>=2.5.2
+Requires-Dist: weasyprint>=62.3
+
+# MDT App
+
+A secure, browser-based MDT (Multidisciplinary Team) workflow app implemented with **FastAPI**, **Jinja2**, and **SQLModel**.
+
+## Features (per spec)
+- Patient Registration with unique Hospital Number and validation
+- MDT Case Entry & Scheduling (unlocked after registration)
+- MDT Meeting Consensus capture
+- Search by MDT Date range and by Hospital Number
+- Read-only MDT details page and PDF preview/download (A4, configurable margins)
+- Admin configuration for report/treatment types and PDF margins
+- Role-based access (user/admin), basic session auth
+- Full audit timestamps
+
+> Target Python: **3.13**
+
+## Quickstart
+
+```bash
+# (optional) create venv
+python3.13 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+pip install -U pip
+pip install -e .
+
+# run dev server
+uvicorn app.main:app --reload
+```
+
+Open http://127.0.0.1:8000
+
+## Admin bootstrap
+First run will create a default admin if none exists:
+- user: `admin@example.com`
+- password: `adminadmin`  (change in Admin > Users)
+
+## Notes
+- PDF rendering uses WeasyPrint. On some systems you may need system packages (e.g., `libpango`, `gdk-pixbuf`, `libffi`) installed.
+- This is a reference implementation meant to be extended.

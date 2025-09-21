@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>MDT Details (Read-only)</h2>
+<div class="card">
+  <div><strong>{{ case.patient.name }}</strong> — HN {{ case.patient.hospital_number }}</div>
+  <div>DOB {{ case.patient.dob }} — Age: {{ age }}</div>
+</div>
+<table>
+  <tr><th>Clinical History</th><td>{{ case.clinical_history or "-" }}</td></tr>
+  <tr><th>Provisional Diagnosis</th><td>{{ case.provisional_diagnosis or "-" }}</td></tr>
+  <tr><th>Discussion For</th><td>{{ case.discussion_for or "-" }}</td></tr>
+  <tr><th>Scheduled For (Reason)</th><td>{{ case.scheduled_reason or "-" }}</td></tr>
+  <tr><th>Scheduled Date</th><td>{{ case.scheduled_date or "-" }}</td></tr>
+  <tr><th>Status</th><td><span class="badge {{ 'done' if case.status=='Done' else 'pending' }}">{{ case.status }}</span></td></tr>
+</table>
+<p><a class="btn" href="/cases/{{ case.id }}/preview.pdf" target="_blank">Preview as PDF</a></p>
+{% if case.consensus %}
+<h3>Consensus & Follow-ups</h3>
+<p>{{ case.consensus.consensus_text }}</p>
+<p>Follow-ups: {{ case.consensus.followups_json }}</p>
+{% else %}
+<p><a class="btn" href="/cases/{{ case.id }}/consensus">Open Consensus</a></p>
+{% endif %}
+{% endblock %}
